@@ -22,22 +22,24 @@ var errorMsg;
 function Login(props) {
   const [valueForm, setValueForm] = useState(null);
   const submitForm = async values => {
-    let url = Apiurl + "/login";
+    let url = `${Apiurl}/login`;
     let username = values._root.entries[0];
     let password = values._root.entries[1];
     let form = { "username": username[1], "password": password[1] };
-    localStorage.setItem("useranme", "tomuch");
+    /*localStorage.setItem("useranme", "tomuch");
     localStorage.setItem("esCoach", "0");
     window.location.href = '/app';
-    
-    /*await axios.post(url, form)
+    */
+    await axios.post(url, form)
       .then(response => {
-        if (JSON.parse(response.data[0].consulta).status === "ok") {
+        console.log(response.data);
+       // console.log(JSON.parse(response));
+        if (response.data.status === "ok") {
           localStorage.setItem("useranme", document.getElementById("username").value);
-          localStorage.setItem("esCoach", JSON.parse(response.data[0].consulta).es_coach);
+          localStorage.setItem("esCoach", response.data.es_coach);
           window.location.href = '/app';
         } else {
-          if (JSON.parse(response.data[0].consulta).message == "Usuario no Existe") {
+          if (response.data.message == "Usuario no Existe") {
             var eusername = document.getElementById('eUsername');
             eusername.style.display = "block";
             const padre = document.getElementById('username').parentNode;
@@ -46,7 +48,7 @@ function Login(props) {
             ecopyusername.style.border = "1px solid red";
             shake(ecopyusername);
           }
-          if (JSON.parse(response.data[0].consulta).message == "Password no coincide") {
+          if (response.data.message == "Password no coincide") {
             const epassword = document.getElementById('ePassword');
             epassword.style.display = "block";
             const padre = document.getElementById('pass').parentNode;
@@ -59,7 +61,7 @@ function Login(props) {
       }).catch(error => {
         errorMsg = String(error);
         handleClick();
-      })*/
+      })
   };
 
   const title = brand.name + ' - Login';

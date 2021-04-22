@@ -97,7 +97,7 @@ function Dar() {
                     
                    
                     if (contador <= 30) {
-                        result[contador] = { name: tipo_vol_, valor: valor_ };
+                        result[contador] = { tipovol: tipo_vol_, valor: valor_ };
                     }
                     contador++;
                 })
@@ -142,7 +142,7 @@ export default function App() {
                     }}
                 >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
+                    <XAxis dataKey="tipovol" />
                     <YAxis />
                     <Tooltip />
                     <defs>
