@@ -1,0 +1,17 @@
+.errorUsername{
+    font-size: 10px; 
+    position: absolute;
+    display: none;
+    color: red;
+}
+
+.errorPassword{
+    font-size: 10px; 
+    position: absolute;
+    display: none;
+    color: red;
+}
+
+.hand {
+    cursor: pointer
+}
