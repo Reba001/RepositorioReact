@@ -88,23 +88,7 @@ async function userData() {
   var currentUsername = localStorage.getItem('useranme');
   let url = Apiurl + "/infouser";
   const objectVar = { username: currentUsername };
-  dummyContents.user.name = "reba";
-  dummyContents.user.status = "Coach";
-  localStorage.setItem('nac', "29/01/1993");
-  localStorage.setItem('idUsuarioLogin', "2");
-  dummyContents.user.realName = "Alan";
-  dummyContents.user.realSurname = "Perez";
-  dummyContents.user.username = "reba";
-  dummyContents.user.birthDate = "29/01/1993"; // cambiar a formato correcto
-  dummyContents.user.iduser = "2";
-  dummyContents.user.age = '0';
-  dummyContents.user.sex = '';
-  dummyContents.user.weight = '0';
-  dummyContents.user.height = '0';
-  dummyContents.user.address = 'n/a';
-  dummyContents.user.telephone = '0';
-
-  /*await axios.post(url, objectVar)
+  await axios.post(url, objectVar)
     .then(response => {
       //console.log(response.data[0]);
       dummyContents.user.name = response.data[0].nombre.split(" ", 1) + " " + response.data[0].apellido.split(" ", 1);
@@ -144,7 +128,7 @@ async function userData() {
         }).catch(e => {
         });
     }).catch(error => {
-    });*/
+    });
 }
 
 export const MyComponent = function () { userData(); };
