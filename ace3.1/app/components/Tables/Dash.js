@@ -32,6 +32,7 @@ import CurrentTemperature from './../Encapsulated/CurrentTemperature';
 import CurrentHeartRate from './../Encapsulated/CurrentHeartRate';
 
 import ComponentTest from './../Encapsulated/ComponentTest';
+import ComponentVolMax from './../Encapsulated/ComoponentVolMax';
 
 import Icon from '@material-ui/core/Icon';
 
@@ -199,7 +200,7 @@ function AdvFilter(props) {
             let url = Apiurl + "/misatletas";
             const currentIdCouch = localStorage.getItem('idUsuarioLogin');
             const objectVar = { id: currentIdCouch };
-            await axios.post(url, objectVar).then(data => {
+            /*await axios.post(url, objectVar).then(data => {
                 console.log(data);
                 const result = [];
                 data.data.forEach(item => {
@@ -207,7 +208,7 @@ function AdvFilter(props) {
                 });
                 //console.log(result);
                 setMsg(result);
-            });
+            });*/
         }
         catch (err) {
             console.log(err);
@@ -419,8 +420,32 @@ function AdvFilter(props) {
                         <ComponentTest />
                     </Card>
                 </Grid>
+                
+                <Grid item xs={12} sm={3}>
+                    <Card className={classes.root}>
+                        <ComponentVolMax />
+                    </Card>
+                </Grid>
 
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={3}>
+                    <Card className={classes.root}>
+                        <ComponentVolMax />
+                    </Card>
+                </Grid>
+
+                <Grid item xs={12} sm={3}>
+                    <Card className={classes.root}>
+                        <ComponentVolMax />
+                    </Card>
+                </Grid>
+
+                <Grid item xs={12} sm={3}>
+                    <Card className={classes.root}>
+                        <ComponentVolMax />
+                    </Card>
+                </Grid>
+
+                {/*<Grid item xs={12} sm={6}>
                     <CountOfTimesTheAthleteHasFailed />
 
                 </Grid>
@@ -437,7 +462,7 @@ function AdvFilter(props) {
                     <Card className={classes.root}>
                         <RepetitionCountByDate />
                     </Card>
-                </Grid>
+            </Grid>*/}
             </Grid>
         </div>
 

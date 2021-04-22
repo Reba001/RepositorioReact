@@ -26,7 +26,11 @@ function Login(props) {
     let username = values._root.entries[0];
     let password = values._root.entries[1];
     let form = { "username": username[1], "password": password[1] };
-    await axios.post(url, form)
+    localStorage.setItem("useranme", "tomuch");
+    localStorage.setItem("esCoach", "0");
+    window.location.href = '/app';
+    
+    /*await axios.post(url, form)
       .then(response => {
         if (JSON.parse(response.data[0].consulta).status === "ok") {
           localStorage.setItem("useranme", document.getElementById("username").value);
@@ -55,7 +59,7 @@ function Login(props) {
       }).catch(error => {
         errorMsg = String(error);
         handleClick();
-      })
+      })*/
   };
 
   const title = brand.name + ' - Login';

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Apiurl, Apiurl2 } from './../../services/apirest';
+import { Apiurl } from './../../services/apirest';
 import axios from 'axios';
 
 
@@ -60,7 +60,9 @@ import {
 
 
 var result = [];
+var resultCompleto = [];
 var contador = 0;
+var contador2 = 0;
 function Dar() {
     useEffect( () => {
         const timeOut = setInterval(() => {
@@ -75,14 +77,14 @@ function Dar() {
     }, [ ] )
 
     const getMsg = async () => {
-        let url = "https://ykpvsqrkyj.execute-api.us-east-2.amazonaws.com/practica2/getmedicion";
+        let url = Apiurl + "/getmedicion";
         const currentIdUsuario = localStorage.getItem('idUsuarioLogin');
         const objectVar = {
             idusuario: currentIdUsuario
         };
         await axios.post(url, objectVar).
             then(data => {
-                var tipo_vol = "";
+                var tipo_vol_ = "";
                 var distancia_ = "";
                 var velocidad_ = "";
                 var temperatura_ = "";
@@ -90,11 +92,12 @@ function Dar() {
                 var contItems4 = "";
                 console.log(data);
                 data.data.forEach(item => {
-                    tipo_vol = item.tipo_vol;
+                    tipo_vol_ = item.tipo_vol;
                     valor_ = item.valor;
+                    
                    
                     if (contador <= 30) {
-                        result[contador] = { name: fechaActual, valor: pulso_ };
+                        result[contador] = { name: tipo_vol_, valor: valor_ };
                     }
                     contador++;
                 })
@@ -144,8 +147,8 @@ export default function App() {
                     <Tooltip />
                     <defs>
                         <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="off" stopColor="green" stopOpacity={1} />
-                            <stop offset="off" stopColor="red" stopOpacity={1} />
+                            <stop offset="0" stopColor="green" stopOpacity={1} />
+                            <stop offset="0" stopColor="red" stopOpacity={1} />
                         </linearGradient>
                     </defs>
                     <Area
