@@ -56,8 +56,8 @@ function Dar() {
                 var temperatura_ = "";
                 var nombre_ = "";
                 var contItems4 = "";
-                console.log("Esta es una parte de card de peso");
-                console.log(data.data);
+                //console.log("Esta es una parte de card de peso");
+                //console.log(data.data);
 
                 data.data.forEach(item => {
                     peso_ = item.peso;

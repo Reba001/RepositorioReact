@@ -2,152 +2,84 @@ import React, { useEffect, useState } from "react";
 import { Apiurl } from './../../services/apirest';
 import axios from 'axios';
 
-
 import {
+    LineChart,
+    Line,
     AreaChart,
     Area,
     XAxis,
     YAxis,
     CartesianGrid,
     Tooltip,
-    ResponsiveContainer
+    Legend,
+    ResponsiveContainer,
+    Label
 } from "recharts";
 
-/*const data = [
-    {
-        name: "Page A",
-        valor: 4000,
-        pv: 2400,
-        amt: 2400
-    },
-    {
-        name: "Page B",
-        valor: 3000,
-        pv: 1398,
-        amt: 2210
-    },
-    {
-        name: "Page C",
-        valor: -1000,
-        pv: 9800,
-        amt: 2290
-    },
-    {
-        name: "Page D",
-        valor: 500,
-        pv: 3908,
-        amt: 2000
-    },
-    {
-        name: "Page E",
-        valor: -2000,
-        pv: 4800,
-        amt: 2181
-    },
-    {
-        name: "Page F",
-        valor: -250,
-        pv: 3800,
-        amt: 2500
-    },
-    {
-        name: "Page G",
-        valor: 3490,
-        pv: 4300,
-        amt: 2100
-    }
-];*/
 
+import { makeStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.background.paper,
+    },
+    gridList: {
+        width: "100%",
+        height: 350,
+    },
+}));
 
 var result = [];
 var contador = 0;
-var fechaanterior_ = "";
-var ultimafecha_ = "";
-
-
 function Dar() {
-    useEffect( () => {
+    useEffect(() => {
         const timeOut = setInterval(() => {
             getMsg();
-        }, 500)
+        }, 1000)
 
         getMsg();
 
         return () => {
             clearInterval(timeOut);
         }
-    }, [ ] )
+    }, [])
 
     const getMsg = async () => {
         let url = Apiurl + "/rcget";
         const currentIdUsuario = localStorage.getItem('idUsuarioLogin');
         const objectVar = {
             id_usuario: currentIdUsuario,
-            id_medicion: 2
+            id_medicion: 1
         };
         await axios.post(url, objectVar).
             then(data => {
-                let tipo_vol_ = "";
-                let valor_ = "";
-                
-                
-                console.log(data);
                 data.data.forEach(item => {
-                    console.log(item);
-                    console.log(" -------  resultado -------");
-                    if(item.fecha){
-                        tipo_vol_ = item.descripcion;
-                        valor_ = item.valor;
-                        fechaanterior_ = ultimafecha_;
-                        ultimafecha_ = item.fecha;
-                        console.log(item.descripcion);
-                        console.log(item.valor);
-                        if (contador <= 30) {
-
-                            if(fechaanterior_ !== ultimafecha_){
-                                result[contador] = { tipovol: tipo_vol_, valor: valor_ , ultimafecha:ultimafecha_  };
-                                contador++;
-                            }
-                            
-                            console.log("--------- result -------");
-                            console.log(result);
-                            console.log(fechaanterior_);
-                            console.log(ultimafecha_);
-                        
-                            
-                        }else{
-                            result.splice(29, 1);
-                            contador--;
-                        }
-                    }
-                    
+                    result[contador] = item.valor;
+                    contador++;
                 })
 
-                setPoints(result);
+                const newPuntos = Object.keys(result).map(k => ({
+                    name: k, Volumen: result[k]
+                }))
+
+                setPoints(newPuntos);
             });
     }
-    const [points, setPoints] = useState([]);
 
+    if (contador >= 30) {
+        result.splice(0, 1);
+    }
+    const [points, setPoints] = useState([]);
     return points;
 }
 
-/*const gradientOffset = () => {
-    const dataMax = Math.max(...data.map((i) => i.valor));
-    const dataMin = Math.min(...data.map((i) => i.valor));
-
-    if (dataMax <= 0) {
-        return 0;
-    }
-    if (dataMin >= 0) {
-        return 1;
-    }
-
-    return dataMax / (dataMax - dataMin);
-};
-
-const off = gradientOffset();*/
-
 export default function App() {
+    const classes = useStyles();
     return (
         <div style={{ width: '100%', height: 300 }}>
             <ResponsiveContainer width="100%" height="100%">
@@ -156,16 +88,18 @@ export default function App() {
                     height={400}
                     data={Dar()}
                     margin={{
-                        top: 10,
-                        right: 30,
-                        left: 0,
-                        bottom: 0
+                        top: 30,
+                        right: 20,
+                        left: 20,
+                        bottom: 50
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    
-                    <YAxis />
+                    <CartesianGrid stroke="#f5f5f5" />
                     <Tooltip />
+
+                    <YAxis unit=" ml/s" type="number" label={{ value: 'Volumen', angle: -90, position: 'insideLeft' }} />
+
+                    
                     <defs>
                         <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
                             <stop offset="0" stopColor="green" stopOpacity={1} />
@@ -174,7 +108,7 @@ export default function App() {
                     </defs>
                     <Area
                         type="monotone"
-                        dataKey="valor"
+                        dataKey="Volumen"
                         stroke="#000"
                         fill="url(#splitColor)"
                     />

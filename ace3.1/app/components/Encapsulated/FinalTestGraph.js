@@ -138,6 +138,8 @@ const objectVar = {
     limit: "0"
 };
 
+var oneMax = 0;
+var oneMin = 0;
 function get(myVal) {
     useEffect(() => {
         const timeOut = setInterval(() => {
@@ -157,17 +159,100 @@ function get(myVal) {
                 data.data.forEach(item => {
                     if (item.id_sesion == myVal) {
                         result[contador] = { valor: item.valor };
+                        //resultAfuera[contador] = {valor: item.valor };
                         contador++;
                     }
+
+                    if(myVal == 1){
+                        localStorage.setItem("oneMax", Math.max(...result.map((i) => i.valor)));
+                        localStorage.setItem("oneMin", Math.min(...result.map((i) => i.valor)));
+                        //oneMax = Math.max(...result.map((i) => i.valor));
+                        //oneMin = Math.min(...result.map((i) => i.valor));
+                    }
+
+                    if(myVal == 2){
+                        localStorage.setItem("twoMax", Math.max(...result.map((i) => i.valor)));
+                        localStorage.setItem("twoMin", Math.min(...result.map((i) => i.valor)));
+                    }
+                    //resultAfuera[contadorAfuera] = {id_sesion:item.id_sesion, valor: item.valor };
+                    //contadorAfuera++;
                 })
 
                 setPoints(result);
             });
     }
     const [points, setPoints] = useState([]);
-    points.sort();
     return points;
 }
+
+
+function get2(myVal) {
+    var contador = 0;
+    var result = [];
+    axios.post(url, objectVar).
+        then(data => {
+            data.data.forEach(item => {
+                if (item.id_sesion == myVal) {
+                    result[contador] = { valor: item.valor };
+                    contador++;
+                }
+            })
+
+            setPoints(result);
+        });
+    const [points, setPoints] = useState([]);
+    return points;
+}
+
+function muestra(val) {
+    //console.log(resultAfuera);
+    
+    /*var cont = 0;
+    var array = [];
+    resultAfuera.map((i) => {
+        //if(i.id_sesion == val){
+            console.log(i);
+        //}
+        //console.log(i.valor);
+
+    });*/
+    /*resultAfuera.data.forEach(item => {
+        if (item.id_sesion == val) {
+            array[cont] = { valor: item.valor };
+            cont++;
+        }
+    });
+    console.log(array);
+    setPoints(array);
+    const [points, setPoints] = useState([]);*/
+    //const dataMax = Math.max(...resultAfuera.map((i) => i.valor));
+    //const dataMin = Math.min(...resultAfuera.map((i) => i.valor));
+    //xconsole.log(dataMax);
+
+    //contadorAfuera = 0;
+    //resultAfuera.length = 0;
+    
+
+    /*if (dataMax <= 0) {
+        return 0;
+    }
+    if (dataMin >= 0) {
+        return 1;
+    }*/
+
+    return 10;
+    //return 10;
+}
+
+function forOne(){
+    return localStorage.getItem("oneMax") / (localStorage.getItem("oneMax") - (localStorage.getItem("oneMin")));
+    //return oneMax / (oneMax-(oneMin));
+}
+
+function forTwo(){
+    return localStorage.getItem("twoMax") / (localStorage.getItem("twoMax") - (localStorage.getItem("twoMin")));
+}
+
 function App(props) {
     const { classes } = props;
     const classes_ = useStyles();
@@ -187,9 +272,12 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip content={<CustomTooltip />} />
                                     <defs>
-                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
+                                        <linearGradient id="splitColor1" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset={forOne()} stopColor="green" stopOpacity={1} />
+                                            <stop offset={forOne()} stopColor="red" stopOpacity={1} />
+                                        </linearGradient>
                                     </defs>
-                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor)" />
+                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor1)" />
                                 </AreaChart>
                             </ResponsiveContainer>
                         </div>
@@ -209,9 +297,12 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip content={<CustomTooltip />} />
                                     <defs>
-                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
+                                        <linearGradient id="splitColor2" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset={forTwo()} stopColor="green" stopOpacity={1} />
+                                            <stop offset={forTwo()} stopColor="red" stopOpacity={1} />
+                                        </linearGradient>
                                     </defs>
-                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor)" />
+                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor2)" />
                                 </AreaChart>
                             </ResponsiveContainer>
                         </div>
@@ -230,9 +321,12 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip content={<CustomTooltip />} />
                                     <defs>
-                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
+                                        <linearGradient id="splitColor3" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset={muestra(3)} stopColor="green" stopOpacity={1} />
+                                            <stop offset={muestra(3)} stopColor="red" stopOpacity={1} />
+                                        </linearGradient>
                                     </defs>
-                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor)" />
+                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor3)" />
                                 </AreaChart>
                             </ResponsiveContainer>
                         </div>
@@ -251,9 +345,12 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip content={<CustomTooltip />} />
                                     <defs>
-                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
+                                        <linearGradient id="splitColor4" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset={muestra(4)} stopColor="green" stopOpacity={1} />
+                                            <stop offset={muestra(4)} stopColor="red" stopOpacity={1} />
+                                        </linearGradient>
                                     </defs>
-                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor)" />
+                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor4)" />
                                 </AreaChart>
                             </ResponsiveContainer>
                         </div>
@@ -272,9 +369,12 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip content={<CustomTooltip />} />
                                     <defs>
-                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
+                                        <linearGradient id="splitColor5" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset={muestra(5)} stopColor="green" stopOpacity={1} />
+                                            <stop offset={muestra(5)} stopColor="red" stopOpacity={1} />
+                                        </linearGradient>
                                     </defs>
-                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor)" />
+                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor5)" />
                                 </AreaChart>
                             </ResponsiveContainer>
                         </div>
@@ -293,9 +393,12 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip content={<CustomTooltip />} />
                                     <defs>
-                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
+                                        <linearGradient id="splitColor6" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset={muestra(6)} stopColor="green" stopOpacity={1} />
+                                            <stop offset={muestra(6)} stopColor="red" stopOpacity={1} />
+                                        </linearGradient>
                                     </defs>
-                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor)" />
+                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor6)" />
                                 </AreaChart>
                             </ResponsiveContainer>
                         </div>
@@ -314,9 +417,12 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip content={<CustomTooltip />} />
                                     <defs>
-                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
+                                        <linearGradient id="splitColor7" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset={muestra(7)} stopColor="green" stopOpacity={1} />
+                                            <stop offset={muestra(7)} stopColor="red" stopOpacity={1} />
+                                        </linearGradient>
                                     </defs>
-                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor)" />
+                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor7)" />
                                 </AreaChart>
                             </ResponsiveContainer>
                         </div>
@@ -335,9 +441,12 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip content={<CustomTooltip />} />
                                     <defs>
-                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
+                                        <linearGradient id="splitColor8" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset={muestra(8)} stopColor="green" stopOpacity={1} />
+                                            <stop offset={muestra(8)} stopColor="red" stopOpacity={1} />
+                                        </linearGradient>
                                     </defs>
-                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor)" />
+                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor8)" />
                                 </AreaChart>
                             </ResponsiveContainer>
                         </div>
@@ -356,9 +465,12 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip content={<CustomTooltip />} />
                                     <defs>
-                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
+                                        <linearGradient id="splitColor9" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset={muestra(9)} stopColor="green" stopOpacity={1} />
+                                            <stop offset={muestra(9)} stopColor="red" stopOpacity={1} />
+                                        </linearGradient>
                                     </defs>
-                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor)" />
+                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor9)" />
                                 </AreaChart>
                             </ResponsiveContainer>
                         </div>
@@ -377,9 +489,12 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip content={<CustomTooltip />} />
                                     <defs>
-                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
+                                        <linearGradient id="splitColor10" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset={muestra(10)} stopColor="green" stopOpacity={1} />
+                                            <stop offset={muestra(10)} stopColor="red" stopOpacity={1} />
+                                        </linearGradient>
                                     </defs>
-                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor)" />
+                                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor10)" />
                                 </AreaChart>
                             </ResponsiveContainer>
                         </div>
