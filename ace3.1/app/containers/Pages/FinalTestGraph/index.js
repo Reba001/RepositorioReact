@@ -15,7 +15,7 @@ let url = Apiurl + "/historial";
 const currentIdUsuario = localStorage.getItem('idUsuarioLogin');
 const objectVar = {
     id_usuario: currentIdUsuario,
-    id_medicion: "2",
+    id_medicion: "1",
     limit: "0"
 };
 
