@@ -79,10 +79,11 @@ function Dar() {
     }, [ ] )
 
     const getMsg = async () => {
-        let url = Apiurl + "/getultimamed";
+        let url = Apiurl + "/rcget";
         const currentIdUsuario = localStorage.getItem('idUsuarioLogin');
         const objectVar = {
-            idusuario: currentIdUsuario
+            id_usuario: currentIdUsuario,
+            id_medicion: 2
         };
         await axios.post(url, objectVar).
             then(data => {
@@ -92,12 +93,14 @@ function Dar() {
                 
                 console.log(data);
                 data.data.forEach(item => {
-                    if(item.ultima_fecha){
-                        tipo_vol_ = item.tipo_vol;
+                    console.log(item);
+                    console.log(" -------  resultado -------");
+                    if(item.fecha){
+                        tipo_vol_ = item.descripcion;
                         valor_ = item.valor;
                         fechaanterior_ = ultimafecha_;
-                        ultimafecha_ = item.ultima_fecha;
-                        console.log(item.tipo_vol);
+                        ultimafecha_ = item.fecha;
+                        console.log(item.descripcion);
                         console.log(item.valor);
                         if (contador <= 30) {
 
@@ -113,7 +116,7 @@ function Dar() {
                         
                             
                         }else{
-                            result.splice(0, 1);
+                            result.splice(29, 1);
                             contador--;
                         }
                     }
@@ -160,7 +163,7 @@ export default function App() {
                     }}
                 >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="tipovol" />
+                    
                     <YAxis />
                     <Tooltip />
                     <defs>
