@@ -13,3 +13,64 @@ div#BodyTemperature {
     align-items: center;
     text-align: center;
 }
+
+@keyframes appear {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    75% {
+      transform: scale(0.95);
+    }
+    100% {
+      transform: scale(1);
+    }
+}
+
+#mitwo{
+    display: none;
+}
+
+#mione{
+    display: none;
+}
+
+#mitree{
+    display: none;
+}
+
+#mifour{
+    display: none;
+}
+
+#mifive{
+    display: none;
+}
+
+#misix{
+    display: none;
+}
+
+#miseven{
+    display: none;
+}
+
+#mieght{
+    display: none;
+}
+
+#minine{
+    display: none;
+}
+
+#miten{
+    display: none;
+}
+
+div.custom-tooltip{
+    background-color: #FFFFFF !important;
+    padding: 10px;
+    border-radius: 8px;
+}

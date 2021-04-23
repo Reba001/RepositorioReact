@@ -69,9 +69,9 @@ export const MyProfile = Loadable({
   loader: () => import('./Pages/MyProfile'),
   loading: Loading,
 });
-
-
-export const NuevaPagina = Loadable({
-  loader: () => import('./Pages/NuevaPagina'),
+export const FinalTestGraph = Loadable({
+  loader: () => import('./Pages/FinalTestGraph'),
   loading: Loading,
 });
+
+

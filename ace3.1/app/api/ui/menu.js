@@ -61,6 +61,20 @@ module.exports = [
     icon: 'ios-man-outline',
     linkParent: '/app/my-profile1',
     couch: '0',
+  },
+  {
+    key: 'final_test_graph',
+    name: 'Final test graph',
+    icon: 'ios-grid',
+    linkParent: '/app/final-test-graph',
+    couch: '1',
+  },
+  {
+    key: 'final_test_graph',
+    name: 'Final test graph',
+    icon: 'ios-grid',
+    linkParent: '/app/final-test-graph',
+    couch: '0',
   }
   /*,
   {
