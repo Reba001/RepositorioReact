@@ -64,12 +64,17 @@ var contador = 0;
 var fechaanterior_ = "";
 var ultimafecha_ = "";
 
-
+let url = Apiurl + "/rcget";
+const currentIdUsuario = localStorage.getItem('idUsuarioLogin');
+const objectVar = {
+                    id_usuario: currentIdUsuario,
+                    id_medicion: 2
+                  };
 function Dar() {
     useEffect( () => {
         const timeOut = setInterval(() => {
             getMsg();
-        }, 500)
+        }, 1000)
 
         getMsg();
 
@@ -79,12 +84,7 @@ function Dar() {
     }, [ ] )
 
     const getMsg = async () => {
-        let url = Apiurl + "/rcget";
-        const currentIdUsuario = localStorage.getItem('idUsuarioLogin');
-        const objectVar = {
-            id_usuario: currentIdUsuario,
-            id_medicion: 2
-        };
+        
         await axios.post(url, objectVar).
             then(data => {
                 let tipo_vol_ = "";
@@ -93,8 +93,6 @@ function Dar() {
                 
                 console.log(data);
                 data.data.forEach(item => {
-                    console.log(item);
-                    console.log(" -------  resultado -------");
                     if(item.fecha){
                         tipo_vol_ = item.descripcion;
                         valor_ = item.valor;
@@ -105,7 +103,7 @@ function Dar() {
                         if (contador <= 30) {
 
                             if(fechaanterior_ !== ultimafecha_){
-                                result[contador] = { tipovol: tipo_vol_, valor: valor_ , ultimafecha:ultimafecha_  };
+                                result.push({ tipovol: tipo_vol_, valor: valor_ , ultimafecha:ultimafecha_  });
                                 contador++;
                             }
                             
@@ -116,7 +114,7 @@ function Dar() {
                         
                             
                         }else{
-                            result.splice(29, 1);
+                            result.pop();
                             contador--;
                         }
                     }
@@ -131,9 +129,9 @@ function Dar() {
     return points;
 }
 
-/*const gradientOffset = () => {
-    const dataMax = Math.max(...data.map((i) => i.valor));
-    const dataMin = Math.min(...data.map((i) => i.valor));
+const gradientOffset = () => {
+    const dataMax = Math.max(...Dar().map((i) => i.valor));
+    const dataMin = Math.min(...Dar().map((i) => i.valor));
 
     if (dataMax <= 0) {
         return 0;
@@ -145,39 +143,23 @@ function Dar() {
     return dataMax / (dataMax - dataMin);
 };
 
-const off = gradientOffset();*/
+const off = gradientOffset();
 
 export default function App() {
     return (
         <div style={{ width: '100%', height: 300 }}>
             <ResponsiveContainer width="100%" height="100%">
-                <AreaChart
-                    width={500}
-                    height={400}
-                    data={Dar()}
-                    margin={{
-                        top: 10,
-                        right: 30,
-                        left: 0,
-                        bottom: 0
-                    }}
-                >
+                <AreaChart width={500} height={400} data={Dar()} margin={{ top: 20, right: 50, left: 0, bottom: 20 }} >
                     <CartesianGrid strokeDasharray="3 3" />
-                    
                     <YAxis />
                     <Tooltip />
                     <defs>
-                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0" stopColor="green" stopOpacity={1} />
-                            <stop offset="0" stopColor="red" stopOpacity={1} />
+                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> 
+                            <stop offset={off} stopColor="green" stopOpacity={1} /> 
+                            <stop offset={off} stopColor="red" stopOpacity={1} />
                         </linearGradient>
                     </defs>
-                    <Area
-                        type="monotone"
-                        dataKey="valor"
-                        stroke="#000"
-                        fill="url(#splitColor)"
-                    />
+                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor)" />
                 </AreaChart>
             </ResponsiveContainer>
         </div>

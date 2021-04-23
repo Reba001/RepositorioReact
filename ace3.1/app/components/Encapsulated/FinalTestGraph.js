@@ -142,7 +142,7 @@ function get(myVal) {
     useEffect(() => {
         const timeOut = setInterval(() => {
             getMsg();
-        }, 3000)
+        }, 500)
         getMsg();
         return () => {
             clearInterval(timeOut);
@@ -186,7 +186,10 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip />
                                     <defs>
-                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
+                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> 
+                                            <stop offset="0" stopColor="green" stopOpacity={1} /> 
+                                            <stop offset="0" stopColor="red" stopOpacity={1} />
+                                        </linearGradient>
                                     </defs>
                                     <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor)" />
                                 </AreaChart>
@@ -208,7 +211,10 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip content={<CustomTooltip />} />
                                     <defs>
-                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
+                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> 
+                                            <stop offset="0" stopColor="green" stopOpacity={1} /> 
+                                            <stop offset="0" stopColor="red" stopOpacity={1} /> 
+                                        </linearGradient>
                                     </defs>
                                     <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor)" />
                                 </AreaChart>
@@ -229,7 +235,10 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip />
                                     <defs>
-                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
+                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> 
+                                            1<stop offset="0" stopColor="green" stopOpacity={1} /> 
+                                            <stop offset="0" stopColor="red" stopOpacity={1} /> 
+                                        </linearGradient>
                                     </defs>
                                     <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor)" />
                                 </AreaChart>
@@ -292,7 +301,10 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip />
                                     <defs>
-                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
+                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> 
+                                            <stop offset="0" stopColor="green" stopOpacity={1} /> 
+                                            <stop offset="0" stopColor="red" stopOpacity={1} /> 
+                                        </linearGradient>
                                     </defs>
                                     <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor)" />
                                 </AreaChart>
