@@ -60,14 +60,16 @@ import {
 
 
 var result = [];
-var resultCompleto = [];
 var contador = 0;
-var contador2 = 0;
+var fechaanterior_ = "";
+var ultimafecha_ = "";
+
+
 function Dar() {
     useEffect( () => {
         const timeOut = setInterval(() => {
             getMsg();
-        }, 1000)
+        }, 500)
 
         getMsg();
 
@@ -77,27 +79,45 @@ function Dar() {
     }, [ ] )
 
     const getMsg = async () => {
-        let url = Apiurl + "/getmedicion";
+        let url = Apiurl + "/getultimamed";
         const currentIdUsuario = localStorage.getItem('idUsuarioLogin');
         const objectVar = {
             idusuario: currentIdUsuario
         };
         await axios.post(url, objectVar).
             then(data => {
-                var tipo_vol_ = "";
-                var valor_ = "";
+                let tipo_vol_ = "";
+                let valor_ = "";
+                
+                
                 console.log(data);
                 data.data.forEach(item => {
-                    tipo_vol_ = item.tipo_vol;
-                    valor_ = item.valor;
-                    
-                    if (contador <= 30) {
-                        result[contador] = { tipovol: tipo_vol_, valor: valor_ };
-                        contador++;
-                    }else{
-                        result.splice(0, 1);
-                        contador--;
+                    if(item.ultima_fecha){
+                        tipo_vol_ = item.tipo_vol;
+                        valor_ = item.valor;
+                        fechaanterior_ = ultimafecha_;
+                        ultimafecha_ = item.ultima_fecha;
+                        console.log(item.tipo_vol);
+                        console.log(item.valor);
+                        if (contador <= 30) {
+
+                            if(fechaanterior_ !== ultimafecha_){
+                                result[contador] = { tipovol: tipo_vol_, valor: valor_ , ultimafecha:ultimafecha_  };
+                                contador++;
+                            }
+                            
+                            console.log("--------- result -------");
+                            console.log(result);
+                            console.log(fechaanterior_);
+                            console.log(ultimafecha_);
+                        
+                            
+                        }else{
+                            result.splice(0, 1);
+                            contador--;
+                        }
                     }
+                    
                 })
 
                 setPoints(result);
