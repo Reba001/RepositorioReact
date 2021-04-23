@@ -134,7 +134,7 @@ let url = Apiurl + "/historial";
 const currentIdUsuario = localStorage.getItem('idUsuarioLogin');
 const objectVar = {
     id_usuario: currentIdUsuario,
-    id_medicion: "2",
+    id_medicion: "1",
     limit: "0"
 };
 
@@ -165,6 +165,7 @@ function get(myVal) {
             });
     }
     const [points, setPoints] = useState([]);
+    points.sort();
     return points;
 }
 function App(props) {
@@ -184,7 +185,7 @@ function App(props) {
                                 <AreaChart width={500} height={400} data={get(1)} margin={{ top: 20, right: 50, left: 0, bottom: 20 }} >
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <YAxis />
-                                    <Tooltip />
+                                    <Tooltip content={<CustomTooltip />} />
                                     <defs>
                                         <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> 
                                             <stop offset="0" stopColor="green" stopOpacity={1} /> 
@@ -233,7 +234,7 @@ function App(props) {
                                 <AreaChart width={500} height={400} data={get(3)} margin={{ top: 20, right: 50, left: 0, bottom: 20 }} >
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <YAxis />
-                                    <Tooltip />
+                                    <Tooltip content={<CustomTooltip />} />
                                     <defs>
                                         <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> 
                                             1<stop offset="0" stopColor="green" stopOpacity={1} /> 
@@ -257,7 +258,7 @@ function App(props) {
                                 <AreaChart width={500} height={400} data={get(4)} margin={{ top: 20, right: 50, left: 0, bottom: 20 }} >
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <YAxis />
-                                    <Tooltip />
+                                    <Tooltip content={<CustomTooltip />} />
                                     <defs>
                                         <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
                                     </defs>
@@ -278,7 +279,7 @@ function App(props) {
                                 <AreaChart width={500} height={400} data={get(5)} margin={{ top: 20, right: 50, left: 0, bottom: 20 }} >
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <YAxis />
-                                    <Tooltip />
+                                    <Tooltip content={<CustomTooltip />} />
                                     <defs>
                                         <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
                                     </defs>
@@ -299,7 +300,7 @@ function App(props) {
                                 <AreaChart width={500} height={400} data={get(6)} margin={{ top: 20, right: 50, left: 0, bottom: 20 }} >
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <YAxis />
-                                    <Tooltip />
+                                    <Tooltip content={<CustomTooltip />} />
                                     <defs>
                                         <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> 
                                             <stop offset="0" stopColor="green" stopOpacity={1} /> 
@@ -323,7 +324,7 @@ function App(props) {
                                 <AreaChart width={500} height={400} data={get(7)} margin={{ top: 20, right: 50, left: 0, bottom: 20 }} >
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <YAxis />
-                                    <Tooltip />
+                                    <Tooltip content={<CustomTooltip />} />
                                     <defs>
                                         <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
                                     </defs>
@@ -344,7 +345,7 @@ function App(props) {
                                 <AreaChart width={500} height={400} data={get(8)} margin={{ top: 20, right: 50, left: 0, bottom: 20 }} >
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <YAxis />
-                                    <Tooltip />
+                                    <Tooltip content={<CustomTooltip />} />
                                     <defs>
                                         <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
                                     </defs>
@@ -365,7 +366,7 @@ function App(props) {
                                 <AreaChart width={500} height={400} data={get(9)} margin={{ top: 20, right: 50, left: 0, bottom: 20 }} >
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <YAxis />
-                                    <Tooltip />
+                                    <Tooltip content={<CustomTooltip />} />
                                     <defs>
                                         <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
                                     </defs>
@@ -386,7 +387,7 @@ function App(props) {
                                 <AreaChart width={500} height={400} data={get(10)} margin={{ top: 20, right: 50, left: 0, bottom: 20 }} >
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <YAxis />
-                                    <Tooltip />
+                                    <Tooltip content={<CustomTooltip />} />
                                     <defs>
                                         <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stopColor="green" stopOpacity={1} /> <stop offset="0" stopColor="red" stopOpacity={1} /> </linearGradient>
                                     </defs>
