@@ -23,7 +23,7 @@ import CountOfTimesTheAthleteHasFailed from './../Encapsulated/CountOfTimesTheAt
 import CountOfTimesTheAthleteHasGivenUp from './../Encapsulated/CountOfTimesTheAthleteHasGivenUp';
 import DateOfDay from './../Encapsulated/DateOfDay';
 import RepetitionCountByDate from './../Encapsulated/RepetitionCountByDate';
-import GeneralHistory from './../Encapsulated/GeneralHistory';
+import GeneralHistoryVolAire from './../Encapsulated/GeneralHistoryVolAire';
 import LastHeartRateMeasurement from './../Encapsulated/LastHeartRateMeasurement';
 import LastTemperatureMeasurement from './../Encapsulated/LastTemperatureMeasurement';
 import AverageTemperature from './../Encapsulated/AverageTemperature';
@@ -398,22 +398,16 @@ function AdvFilter(props) {
                         </CardActions>
                     </Card>
                 </Grid>
-                
-               < Grid item xs={12} sm={6} className={classes_.cardAnimation}>
-                    <Paper className={classes_.paper}>
-                        <Typography variant="h5" component="h4" className={classes_.post1}>
-                            General History
-                                            </Typography>
-                        <GeneralHistory />
-                    </Paper>
-                </Grid>
-                
-                <Grid item xs={12} sm={9}>
+                 <Grid item xs={12} sm={9}>
                     <Card className={classes.root}>
                         <SpeedReached />
                     </Card>
                 </Grid>
                 */}
+               
+                
+               
+                
 
                 <Grid item xs={12} sm={12}>
                     <Card className={classes.root}>
@@ -443,6 +437,15 @@ function AdvFilter(props) {
                     <Card className={classes.root}>
                         <ComponentVolMax />
                     </Card>
+                </Grid>
+
+                < Grid item xs={12} sm={12} className={classes_.cardAnimation}>
+                    <Paper className={classes_.paper}>
+                        <Typography variant="h5" component="h4" className={classes_.post1}>
+                            Volmumen Total
+                        </Typography>
+                        <GeneralHistoryVolAire />
+                    </Paper>
                 </Grid>
 
                 {/*<Grid item xs={12} sm={6}>

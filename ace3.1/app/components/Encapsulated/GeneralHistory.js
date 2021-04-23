@@ -15,6 +15,14 @@ import {
 
 var result = [];
 var contador = 0;
+let url = Apiurl + "/historial";
+const currentIdUsuario = localStorage.getItem('idUsuarioLogin');
+const objectVar = {
+    id_usuario: currentIdUsuario,
+    id_medicion: "1",
+    limit: "0"
+};
+
 function Dar() {
     useEffect(() => {
         const timeOut = setInterval(() => {
@@ -29,38 +37,21 @@ function Dar() {
     }, [])
 
     const getMsg = async () => {
-        let url = Apiurl + "/historial";
         const currentIdUsuario = localStorage.getItem('idUsuarioLogin');
-        const objectVar = {
-            id_usuario: currentIdUsuario
-        };
+        
         await axios.post(url, objectVar).
             then(data => {
-                var fechaActual = "";
-                var distancia_ = "";
-                var velocidad_ = "";
-                var temperatura_ = "";
-                var pulso_ = "";
-                var contItems4 = "";
-                console.log(data);
+                var sesion_ = 0;
+                var valor_ = "";
+                var fecha_ = "";
+                //console.log(data);
                 data.data.forEach(item => {
-                    fechaActual = item.fecha;
-                    if (item.descripcion === "pulso") {
-                        pulso_ = item.valor;
-                    }
-                    if (item.descripcion === "temperatura") {
-                        temperatura_ = item.valor;
-                    }
-                    if (item.descripcion === "velocidad") {
-                        velocidad_ = item.valor;
-                    }
-                    if (item.descripcion === "distancia") {
-                        distancia_ = item.valor;
-                    }
-                    contItems4++;
+                    fecha_ = item.fecha;
+                    sesion_ = item.id_sesion;
+                    valor_ = item.valor;
                     if (contItems4 == 4) {
                         if (contador <= 19) {
-                            result[contador] = { name: fechaActual, pulso: pulso_, temperatura: temperatura_, velocidad: velocidad_, distancia: distancia_ };
+                            result[contador] = { sesion:session_, pulso: pulso_, temperatura: temperatura_, velocidad: velocidad_, distancia: distancia_ };
                         }
                         contador++;
                         contItems4 = 0;
