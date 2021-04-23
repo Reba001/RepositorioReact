@@ -144,7 +144,7 @@ function get(myVal) {
     useEffect(() => {
         const timeOut = setInterval(() => {
             getMsg();
-        }, 3000)
+        }, 500)
         getMsg();
         return () => {
             clearInterval(timeOut);
@@ -272,9 +272,15 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip content={<CustomTooltip />} />
                                     <defs>
+<<<<<<< HEAD
                                         <linearGradient id="splitColor1" x1="0" y1="0" x2="0" y2="1">
                                             <stop offset={forOne()} stopColor="green" stopOpacity={1} />
                                             <stop offset={forOne()} stopColor="red" stopOpacity={1} />
+=======
+                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> 
+                                            <stop offset="0" stopColor="green" stopOpacity={1} /> 
+                                            <stop offset="0" stopColor="red" stopOpacity={1} />
+>>>>>>> 0344fde0a8db28051e71ebfb6cd1cf1384a3d0fd
                                         </linearGradient>
                                     </defs>
                                     <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor1)" />
@@ -297,9 +303,15 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip content={<CustomTooltip />} />
                                     <defs>
+<<<<<<< HEAD
                                         <linearGradient id="splitColor2" x1="0" y1="0" x2="0" y2="1">
                                             <stop offset={forTwo()} stopColor="green" stopOpacity={1} />
                                             <stop offset={forTwo()} stopColor="red" stopOpacity={1} />
+=======
+                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> 
+                                            <stop offset="0" stopColor="green" stopOpacity={1} /> 
+                                            <stop offset="0" stopColor="red" stopOpacity={1} /> 
+>>>>>>> 0344fde0a8db28051e71ebfb6cd1cf1384a3d0fd
                                         </linearGradient>
                                     </defs>
                                     <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor2)" />
@@ -321,9 +333,15 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip content={<CustomTooltip />} />
                                     <defs>
+<<<<<<< HEAD
                                         <linearGradient id="splitColor3" x1="0" y1="0" x2="0" y2="1">
                                             <stop offset={muestra(3)} stopColor="green" stopOpacity={1} />
                                             <stop offset={muestra(3)} stopColor="red" stopOpacity={1} />
+=======
+                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> 
+                                            1<stop offset="0" stopColor="green" stopOpacity={1} /> 
+                                            <stop offset="0" stopColor="red" stopOpacity={1} /> 
+>>>>>>> 0344fde0a8db28051e71ebfb6cd1cf1384a3d0fd
                                         </linearGradient>
                                     </defs>
                                     <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor3)" />
@@ -393,9 +411,15 @@ function App(props) {
                                     <YAxis />
                                     <Tooltip content={<CustomTooltip />} />
                                     <defs>
+<<<<<<< HEAD
                                         <linearGradient id="splitColor6" x1="0" y1="0" x2="0" y2="1">
                                             <stop offset={muestra(6)} stopColor="green" stopOpacity={1} />
                                             <stop offset={muestra(6)} stopColor="red" stopOpacity={1} />
+=======
+                                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> 
+                                            <stop offset="0" stopColor="green" stopOpacity={1} /> 
+                                            <stop offset="0" stopColor="red" stopOpacity={1} /> 
+>>>>>>> 0344fde0a8db28051e71ebfb6cd1cf1384a3d0fd
                                         </linearGradient>
                                     </defs>
                                     <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor6)" />

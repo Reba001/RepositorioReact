@@ -77,7 +77,6 @@ function Dar() {
     const [points, setPoints] = useState([]);
     return points;
 }
-
 export default function App() {
     const classes = useStyles();
     return (
