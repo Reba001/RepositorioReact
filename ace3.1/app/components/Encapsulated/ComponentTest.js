@@ -89,8 +89,6 @@ function Dar() {
             then(data => {
                 let tipo_vol_ = "";
                 let valor_ = "";
-                
-                
                 console.log(data);
                 data.data.forEach(item => {
                     if(item.fecha){
@@ -128,7 +126,7 @@ function Dar() {
 
     return points;
 }
-
+/*
 const gradientOffset = () => {
     const dataMax = Math.max(...Dar().map((i) => i.valor));
     const dataMin = Math.min(...Dar().map((i) => i.valor));
@@ -144,24 +142,36 @@ const gradientOffset = () => {
 };
 
 const off = gradientOffset();
-
+*/
 export default function App() {
     return (
-        <div style={{ width: '100%', height: 300 }}>
-            <ResponsiveContainer width="100%" height="100%">
-                <AreaChart width={500} height={400} data={Dar()} margin={{ top: 20, right: 50, left: 0, bottom: 20 }} >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <YAxis />
-                    <Tooltip />
-                    <defs>
-                        <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1"> 
-                            <stop offset={off} stopColor="green" stopOpacity={1} /> 
-                            <stop offset={off} stopColor="red" stopOpacity={1} />
-                        </linearGradient>
-                    </defs>
-                    <Area type="monotone" dataKey="valor" stroke="#000" fill="url(#splitColor)" />
-                </AreaChart>
-            </ResponsiveContainer>
-        </div>
+        <AreaChart
+            width={500}
+            height={400}
+            data={Dar()}
+            margin={{
+                top: 10,
+                right: 30,
+                left: 0,
+                bottom: 0
+            }}
+            >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="tipovol" />
+            <YAxis />
+            <Tooltip />
+            <defs>
+                <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stopColor="green" stopOpacity={1} />
+                <stop offset="0" stopColor="red" stopOpacity={1} />
+                </linearGradient>
+            </defs>
+            <Area
+                type="monotone"
+                dataKey="valor"
+                stroke="#000"
+                fill="url(#splitColor)"
+            />
+            </AreaChart>
     );
 }
