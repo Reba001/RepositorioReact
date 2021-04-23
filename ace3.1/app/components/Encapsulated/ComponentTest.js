@@ -85,21 +85,19 @@ function Dar() {
         await axios.post(url, objectVar).
             then(data => {
                 var tipo_vol_ = "";
-                var distancia_ = "";
-                var velocidad_ = "";
-                var temperatura_ = "";
                 var valor_ = "";
-                var contItems4 = "";
                 console.log(data);
                 data.data.forEach(item => {
                     tipo_vol_ = item.tipo_vol;
                     valor_ = item.valor;
                     
-                   
                     if (contador <= 30) {
                         result[contador] = { tipovol: tipo_vol_, valor: valor_ };
+                        contador++;
+                    }else{
+                        result.splice(0, 1);
+                        contador--;
                     }
-                    contador++;
                 })
 
                 setPoints(result);

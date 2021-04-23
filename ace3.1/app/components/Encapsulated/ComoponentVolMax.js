@@ -105,7 +105,7 @@ export default function SimpleCard() {
     <Card className={classes.root}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-            peso en libras
+            peso en KG
         </Typography>
         <Typography variant="h5" component="h2">
             {d(Dar())}
