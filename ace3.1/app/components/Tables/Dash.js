@@ -24,6 +24,8 @@ import CountOfTimesTheAthleteHasGivenUp from './../Encapsulated/CountOfTimesTheA
 import DateOfDay from './../Encapsulated/DateOfDay';
 import RepetitionCountByDate from './../Encapsulated/RepetitionCountByDate';
 import GeneralHistoryVolAire from './../Encapsulated/GeneralHistoryVolAire';
+import GeneralHistoryVolOxigeno from './../Encapsulated/GeneralHistoryVolOxigeno';
+import GeneralHistoryVolVO2 from './../Encapsulated/GeneralHistoryVolVO2';
 import LastHeartRateMeasurement from './../Encapsulated/LastHeartRateMeasurement';
 import LastTemperatureMeasurement from './../Encapsulated/LastTemperatureMeasurement';
 import AverageTemperature from './../Encapsulated/AverageTemperature';
@@ -445,6 +447,24 @@ function AdvFilter(props) {
                             Volmumen Total
                         </Typography>
                         <GeneralHistoryVolAire />
+                    </Paper>
+                </Grid>
+
+                < Grid item xs={12} sm={12} className={classes_.cardAnimation}>
+                    <Paper className={classes_.paper}>
+                        <Typography variant="h5" component="h4" className={classes_.post1}>
+                            Volmumen Total
+                        </Typography>
+                        <GeneralHistoryVolOxigeno />
+                    </Paper>
+                </Grid>
+
+                < Grid item xs={12} sm={12} className={classes_.cardAnimation}>
+                    <Paper className={classes_.paper}>
+                        <Typography variant="h5" component="h4" className={classes_.post1}>
+                            Volmumen Total
+                        </Typography>
+                        <GeneralHistoryVolVO2 />
                     </Paper>
                 </Grid>
 
