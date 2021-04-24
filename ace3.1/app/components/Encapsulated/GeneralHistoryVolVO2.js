@@ -9,7 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import axios from 'axios';
-import { Apiurl } from './../../services/apirest';
+import { Apiurl } from '../../services/apirest';
 
 import {
     BarChart,
@@ -29,7 +29,7 @@ var fechaactual = "";
 const currentIdUsuario = localStorage.getItem('idUsuarioLogin');
 const objectVar = {
     id_usuario: currentIdUsuario,
-    id_medicion: "1"
+    id_medicion: "3"
 };
 let url = Apiurl + "/rcget";
 
@@ -55,7 +55,6 @@ const useStyles = makeStyles({
     },
   });
   function Dar() {
-    
       useEffect(() => {
           const timeOut = setInterval(() => {
               getMsg();
@@ -80,7 +79,7 @@ const useStyles = makeStyles({
                         //sesion_ = item.id_sesion;
                         fechaanterior = fechaactual;
                         fechaactual = item.fecha;
-                       if(fechaactual !== fechaanterior){
+                       // if(fechaactual !== fechaanterior){
                             if(valor_ > 0) {
                                 tipovol_ = "exhalar";
                                 
@@ -96,7 +95,7 @@ const useStyles = makeStyles({
                                 fecha: fechaactual,
                                 tipovol : tipovol_ 
                             });
-                        }
+                        //}
 
                         
                     })
