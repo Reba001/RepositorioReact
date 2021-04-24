@@ -73,5 +73,9 @@ export const FinalTestGraph = Loadable({
   loader: () => import('./Pages/FinalTestGraph'),
   loading: Loading,
 });
+export const Sessions = Loadable({
+  loader: () => import('./Pages/Sessions'),
+  loading: Loading,
+});
 
 

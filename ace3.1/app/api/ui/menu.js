@@ -65,15 +65,29 @@ module.exports = [
   {
     key: 'final_test_graph',
     name: 'Final test graph',
-    icon: 'ios-grid',
+    icon: 'ios-analytics-outline',
     linkParent: '/app/final-test-graph',
     couch: '1',
   },
   {
     key: 'final_test_graph',
     name: 'Final test graph',
-    icon: 'ios-grid',
+    icon: 'ios-analytics-outline',
     linkParent: '/app/final-test-graph',
+    couch: '0',
+  },
+  {
+    key: 'sessions',
+    name: 'Sessions',
+    icon: 'ios-grid',
+    linkParent: '/app/sessions',
+    couch: '1',
+  },
+  {
+    key: 'sessions',
+    name: 'Sessions',
+    icon: 'ios-grid',
+    linkParent: '/app/sessions',
     couch: '0',
   }
   /*,

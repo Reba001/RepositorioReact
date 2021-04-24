@@ -17,7 +17,8 @@ import {
   MyAthletes,
   MyProfile,
   NotFound,
-  FinalTestGraph
+  FinalTestGraph,
+  Sessions
 } from '../pageListAsync';
 
 
@@ -33,6 +34,7 @@ function Application(props) {
           <Route exact path="/app/my-athletes" component={MyAthletes} />
           <Route exact path="/app/my-profile" component={MyProfile} />
           <Route exact path="/app/final-test-graph" component={FinalTestGraph} />
+          <Route exact path="/app/sessions" component={Sessions} />
 
           <Route path="/app/dashboard" component={DashboardPage} />
           <Route path="/app/form" component={Form} />
@@ -52,9 +54,8 @@ function Application(props) {
           <Route path="/app/pages/error" component={Error} />
           <Route exact path="/app/my-profile" component={MyProfile} />
 
-          <Route exact path="/app/my-profile1" component={NuevaPagina} />
-
           <Route exact path="/app/final-test-graph" component={FinalTestGraph} />
+          <Route exact path="/app/sessions" component={Sessions} />
 
           <Route component={NotFound} />
         </Switch>
