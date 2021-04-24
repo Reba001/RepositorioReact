@@ -417,29 +417,13 @@ function AdvFilter(props) {
                     </Card>
                 </Grid>
                 
-                <Grid item xs={12} sm={3}>
+                {/*<Grid item xs={12} sm={3}>
                     <Card className={classes.root}>
                         <ComponentVolMax />
                     </Card>
                 </Grid>
-
-                <Grid item xs={12} sm={3}>
-                    <Card className={classes.root}>
-                        <ComponentVolMax />
-                    </Card>
-                </Grid>
-
-                <Grid item xs={12} sm={3}>
-                    <Card className={classes.root}>
-                        <ComponentVolMax />
-                    </Card>
-                </Grid>
-
-                <Grid item xs={12} sm={3}>
-                    <Card className={classes.root}>
-                        <ComponentVolMax />
-                    </Card>
-                </Grid>
+*/}
+               
 
                 < Grid item xs={12} sm={12} className={classes_.cardAnimation}>
                     <Paper className={classes_.paper}>
@@ -459,6 +443,8 @@ function AdvFilter(props) {
                     </Paper>
                 </Grid>
 
+                
+
                 < Grid item xs={12} sm={12} className={classes_.cardAnimation}>
                     <Paper className={classes_.paper}>
                         <Typography variant="h5" component="h4" className={classes_.post1}>
@@ -468,7 +454,7 @@ function AdvFilter(props) {
                     </Paper>
                 </Grid>
 
-                {/*<Grid item xs={12} sm={6}>
+               {/** <Grid item xs={12} sm={6}>
                     <CountOfTimesTheAthleteHasFailed />
 
                 </Grid>

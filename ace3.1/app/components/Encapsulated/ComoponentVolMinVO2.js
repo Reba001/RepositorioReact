@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
-import { Apiurl } from './../../services/apirest';
+import { Apiurl } from '../../services/apirest';
 
 
 const useStyles = makeStyles({
@@ -116,7 +116,7 @@ export default function SimpleCard() {
     <Card className={classes.root}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-            VOLUMEN DE AIRE MAXIMO IHALADO 
+            VOLUMEN DE AIRE MINIMO VO2
         </Typography>
         <Typography variant="h5" component="h2">
             168
